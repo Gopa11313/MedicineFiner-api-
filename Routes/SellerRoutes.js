@@ -30,6 +30,7 @@ router.post(
       var latitude = data1.latitude;
       var longitude = data1.longitude;
       const hash = bcrypt.hashSync(password, saltRounds);
+      console.log(data1);
       var data = new Seller({
         name: name,
         email: email,
@@ -67,7 +68,6 @@ router.post("/seller/login", (req, res) => {
         Seller.find({ email: req.body.email })
           .then(function (data) {
             const token = jwt.sign({ userId: userData._id }, "secretkey");
-            //console.log(data)
             res.status(200).json({
               success: true,
               msg: "Login Successfull",
