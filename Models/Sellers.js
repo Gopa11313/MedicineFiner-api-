@@ -27,6 +27,11 @@ const Seller = mongoose.model("Seller", {
     enum: ["User", "Admin"],
     defult: "User",
   },
+  storename: {
+    type: String,
+    requried: true,
+  },
+
   tokens: [
     {
       token: {
