@@ -29,6 +29,7 @@ router.post(
       var role = "User";
       var latitude = data1.latitude;
       var longitude = data1.longitude;
+      var storename = data1.storename;
       const hash = bcrypt.hashSync(password, saltRounds);
       console.log(data1);
       var data = new Seller({
@@ -39,6 +40,7 @@ router.post(
         latitude: latitude,
         longitude: longitude,
         role: role,
+        storename: storename,
       });
       data
         .save()
