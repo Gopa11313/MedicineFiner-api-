@@ -8,5 +8,9 @@ const Drug = mongoose.model("Drug", {
     type: String,
     requried: true,
   },
+  prescription: {
+    type: String,
+    requried: true,
+  },
 });
 module.exports = Drug;
