@@ -12,5 +12,8 @@ const Drug = mongoose.model("Drug", {
     type: String,
     requried: true,
   },
+  date: {
+    type: Date,
+  },
 });
 module.exports = Drug;
