@@ -25,11 +25,14 @@ router.post(
         name: name,
         SellerId: SellerId,
         prescription: prescription,
+        date: Date.now(),
       });
       data
         .save()
         .then(function () {
-          res.status(200).json({ success: true, msg: "Successfully Uploaded" });
+          res
+            .status(200)
+            .json({ success: true, msg: "Successfully Uploaded!!" });
         })
         .catch(function (e) {
           res.status(201).json({ success: false, msg: "Some Error Occurs" });
@@ -39,4 +42,32 @@ router.post(
     }
   }
 );
+
+router.get("/all/drugs/:id", auth.varifyUser, (req, res) => {
+  date = { date: -1 };
+  var SellerId = req.params.id;
+  console.log(SellerId);
+  Drug.find({ SellerId: SellerId })
+    .sort(date)
+    .then(function (data) {
+      console.log(data);
+      res.status(200).json({ success: true, msg: "Done", data: data });
+    })
+    .catch(function (e) {
+      res.status(201).json({ success: false, msg: "some error" });
+    });
+});
+router.post("/search/drug", (req, res) => {
+  var text = req.body.search;
+  console.log(req.body);
+  var query = { name: text };
+  Drug.find(query)
+    .then(function (data) {
+      console.log("Search" + data);
+      res.status(200).json({ success: true, msg: "Done", data: data });
+    })
+    .catch(function (e) {
+      res.status(201).json({ success: false, msg: "some error" });
+    });
+});
 module.exports = router;
