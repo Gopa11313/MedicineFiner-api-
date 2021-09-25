@@ -86,4 +86,17 @@ router.post("/seller/login", (req, res) => {
     });
 });
 
+router.get("/Seller/by/:id", (req, res) => {
+  const id = req.params.id;
+  Seller.find({ _id: id })
+    .then(function (data) {
+      res
+        .status(200)
+        .json({ success: true, data: data, msg: "User Register Success" });
+    })
+    .catch(function (e) {
+      res.status(201).json({ success: false, msg: "Some Error Occurs" });
+    });
+});
+
 module.exports = router;
